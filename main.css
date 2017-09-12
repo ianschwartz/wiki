@@ -1,0 +1,13 @@
+#app {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+#search {
+	grid-column: 1;
+	display: inline-block;
+}
+#article {
+	grid-column: 2 / 3;
+	display: inline-block;
+}
