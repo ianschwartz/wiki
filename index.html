@@ -10,26 +10,24 @@
 		<div id='search'>
 			<h1>Search</h1>
 
-			<input type="text" v-model="searchString" id="search-terms">
+			<input type="text" v-model="searchString" id="search-terms" placeholder="Leave blank for a list of random articles...">
 			<button v-on:click="makeSearchReguest">Submit</button>
 		
 			<ul id='results' v-if="searchResults">
 				<li v-for="result in searchResults">
-					<a href="#" v-on:click="updateArticle(result)">
+					<a href="#" v-on:click="updateArticle(result.title)">
 						<h3>{{result.title}}</h3>
 						<p>{{result.content}}</p>
 					</a>
 				</li>
 			</ul>
 		</div>
-		<div id="article">
-			<h1>Article</h1>
-			<a :href="wikiLink">
-				<h2 if='title'>{{ title }}</h2>
-				<div v-html='content' id=content>
-				</div>
-			</a>
-
+		<div id="article" v-if="articleLoaded">
+			<h1 if='title'>{{ title }}</h2>
+			<a :href="wikiLink">View Page on Wikipeid<a/a>
+			<div v-html='content' id=content>
+				<!-- content will be rendered here -->
+			</div>
 		</div>
 	</div>
 <script src="https://unpkg.com/vue"></script>

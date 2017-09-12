@@ -4,9 +4,9 @@ var vm = new Vue({
 	data: {
 		searchString: "",
 		searchResults: [],
-		title: "test",
-		content: "Incididunt irure et ex dolor consectetur in sint anim qui sit mollit do laborum sit reprehenderit mollit mollit cillum veniam labore elit commodo irure sit dolore voluptate consectetur nulla dolor in qui aute adipisicing in dolore ut.",
-		wikiLink: "http://www.google.com"
+		title: "",
+		content: "",
+		wikiLink: ""
 	},
 	methods: {
 		url: function(str) {
@@ -23,29 +23,42 @@ var vm = new Vue({
 						console.log(error);
 				});
 			} else {
-				console.log('no search terms');
+				fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=5&origin=*&format=json")
+					.then(function(resp) {
+						return resp.json();
+					}).then(function(resp) {
+						data = resp.query.random;
+						vm.searchResults = data;
+					}).catch(function(error) {
+						console.log(error);
+				});
 			}	
 		},
 		makeArticleRequest: function(url) {
-			fetch(formatPageUrl(url))
+			fetch(url)
 				.then(function(resp) {
 					return resp.json();
 				}).then(function(resp) {
 					var data = resp.parse;
-					console.log(data);
+					console.log(resp);
 					vm.title = data.title;
 					vm.content = data.text["*"];
+					vm.wikiLink = url;
 				}).catch(function(error) {
 					console.log(error);
 				})
 		},
-		updateArticle: function(article) {
-			this.makeArticleRequest(article.url);
+		updateArticle: function(title) {
+			var url = "https://en.wikipedia.org/w/api.php?action=parse&page=" + title + "&format=json&origin=*";
+			this.makeArticleRequest(url);
 		}
 	},
 	computed: {
 		searchStringIsThere: function() {
 			return this.searchString.length > 0;
+		},
+		articleLoaded: function() {
+			return this.title.length > 0;
 		}
 	}
 })
@@ -62,12 +75,12 @@ function zipThreeObjs(obj1, obj2, obj3) {
 	return arr;
 }
 testURL = "https://en.wikipedia.org/wiki/Hood_County_Courthouse_Historic_District";
-
+// https://en.wikipedia.org/w/api.php?action=parse&page=Albert%20Einstein&format=jsonfm
 // https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&page=pizza
+//https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json
 
 function formatPageUrl(url) {
 	santizedURL = url.split('/').pop();
-	return "https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&origin=%2A&page=" + santizedURL + "&format=json";
+	return "https://en.wikipedia.org/w/api.php?action=parse&page=" + santizedURL + "&format=json&origin=*"
+//	return "https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&origin=%2A&page=" + santizedURL + "&format=json";
 }
-
-console.log(formatPageUrl(testURL));
