@@ -15,7 +15,7 @@
 		
 			<ul id='results' v-if="searchResults">
 				<li v-for="result in searchResults">
-					<a v-on:click="updateArticle(result)">
+					<a href="#" v-on:click="updateArticle(result)">
 						<h3>{{result.title}}</h3>
 						<p>{{result.content}}</p>
 					</a>
@@ -26,8 +26,7 @@
 			<h1>Article</h1>
 			<a :href="wikiLink">
 				<h2 if='title'>{{ title }}</h2>
-				<div id=content>
-					{{ content }}	
+				<div v-html='content' id=content>
 				</div>
 			</a>
 

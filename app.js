@@ -26,8 +26,21 @@ var vm = new Vue({
 				console.log('no search terms');
 			}	
 		},
+		makeArticleRequest: function(url) {
+			fetch(formatPageUrl(url))
+				.then(function(resp) {
+					return resp.json();
+				}).then(function(resp) {
+					var data = resp.parse;
+					console.log(data);
+					vm.title = data.title;
+					vm.content = data.text["*"];
+				}).catch(function(error) {
+					console.log(error);
+				})
+		},
 		updateArticle: function(article) {
-			console.log(article);
+			this.makeArticleRequest(article.url);
 		}
 	},
 	computed: {
@@ -48,3 +61,13 @@ function zipThreeObjs(obj1, obj2, obj3) {
 	});
 	return arr;
 }
+testURL = "https://en.wikipedia.org/wiki/Hood_County_Courthouse_Historic_District";
+
+// https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&page=pizza
+
+function formatPageUrl(url) {
+	santizedURL = url.split('/').pop();
+	return "https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&origin=%2A&page=" + santizedURL + "&format=json";
+}
+
+console.log(formatPageUrl(testURL));
