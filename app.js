@@ -43,7 +43,7 @@ var vm = new Vue({
 					console.log(resp);
 					vm.title = data.title;
 					vm.content = data.text["*"];
-					vm.wikiLink = url;
+					vm.wikiLink = "https://en.wikipedia.org/?curid=" + data.pageid;
 				}).catch(function(error) {
 					console.log(error);
 				})
