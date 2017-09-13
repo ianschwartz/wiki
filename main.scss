@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+/*  GRID OF FOUR  */
+.span_4_of_4 {
+	width: 100%;
+}
+.span_3_of_4 {
+	width: 74.6%;
+}
+.span_2_of_4 {
+	width: 49.2%;
+}
+.span_1_of_4 {
+	width: 23.8%;
+}
+
+
+#app {
+  font-family: 'Roboto', sans-serif;
+
+}
+h1 {
+	font-size: 3rem;
+	text-align: center;
+}
+#search {
+	#form {
+		margin-top: 10px;
+		width: 100%;
+		#search-terms {
+			width: 100%;
+			display: block;
+			padding: 10px;
+			font-size: 1.25rem;
+		}
+		button {
+			width: 150px;
+			height: 75px;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			margin-top: 10px;
+			border-radius: 10px;
+			font-size: 1.5rem;
+			background: #7ba9f2;
+			&:hover {
+				background: #99bdf7;
+			}
+		}
+	}
+	ul {
+		list-style: none;
+		margin-top: 10px;
+		margin-left: 20px;
+		li {
+			margin-bottom: 5px;
+		}
+	}
+}
+#article {
+}
+
+[v-cloak] {
+  display: none;
+}
+
+#article {
+	#headline {
+		text-align: center;
+		a {
+			font-size: 1rem;
+		}
+	}
+	#content {
+		padding: 10%;
+
+		table {
+			display: none;
+		}
+	.thumbinner {
+		width: 100% !important	;
+		text-align: center;
+		.PopUpMediaTransform {
+			width: 100% !important;
+			img {
+				padding: 10px;
+				width: 50%;
+				max-width: 100%;
+				height: auto;
+				margin:auto;
+				display: block;
+			}
+
+		}
+		.thumbimage {
+			border-color: blue;
+			border-width: 2px;
+			border-style: solid;
+			padding: 10px;
+			width: 50%;
+			height: auto;
+			margin:auto;
+			display: block;
+		}
+		.thumbcaption {
+			font-size: .75rem;
+			text-align: center;
+			max-width: 60%;
+			margin: auto;
+		}
+	}
+	p {
+		margin: 10px;
+	}
+	ul {
+		padding: 20px;
+		list-style: none;
+		li {
+			padding: 2px;
+		}
+	}
+}
+	.mw-editsection {
+		display: none;
+	}
+}

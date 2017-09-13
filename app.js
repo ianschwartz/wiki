@@ -2,7 +2,7 @@
 var vm = new Vue({
 	el: "#app",
 	data: {
-		searchString: "",
+		searchString: "fart",
 		searchResults: [],
 		title: "",
 		content: "",
@@ -23,7 +23,7 @@ var vm = new Vue({
 						console.log(error);
 				});
 			} else {
-				fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=5&origin=*&format=json")
+				fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=8&origin=*&format=json")
 					.then(function(resp) {
 						return resp.json();
 					}).then(function(resp) {
@@ -44,6 +44,8 @@ var vm = new Vue({
 					vm.title = data.title;
 					vm.content = data.text["*"];
 					vm.wikiLink = "https://en.wikipedia.org/?curid=" + data.pageid;
+				}).then(function(resp) {
+					sanitizeURLs();
 				}).catch(function(error) {
 					console.log(error);
 				})
@@ -84,3 +86,18 @@ function formatPageUrl(url) {
 	return "https://en.wikipedia.org/w/api.php?action=parse&page=" + santizedURL + "&format=json&origin=*"
 //	return "https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&origin=%2A&page=" + santizedURL + "&format=json";
 }
+
+function sanitizeURLs() {
+	var a = document.getElementById('content').getElementsByTagName('a');
+	Object.keys(a).forEach(function(key) {
+		var url = a[key].href;
+		var splitURL = url.split("/");
+		var localURL = window.location.href.split("/");
+		if (splitURL[2] === localURL[2] && splitURL.length === 5) {
+			a[key].href = "https://en.wikipedia.org/wiki/" + splitURL[4];
+			a[key].target = "_blank";
+		}
+	})
+}
+
+vm.makeSearchReguest();
