@@ -32,7 +32,7 @@
 							<button class='button is-info' v-on:click="makeSearchReguest"><i class="fa fa-search" aria-hidden="true"></i></button>
 						</div>
 				        <div class='control'>
-							<button class='button is-info'>random article</button>
+							<button class='button is-info' v-on:click="randomArticle">random article</button>
 						</div>
 					</div>
 		          </span>
@@ -75,7 +75,7 @@
 		<div id="article" v-if="articleLoaded">
 			<div class='has-text-centered'>
 				<h1 class='title' v-if='title'>{{ title }}</h1>
-				<a :href="wikiLink" class='subtitle' id="wiki-link" target="_blank">View Page on Wikipedia</a>
+				<a :href="wikiLink" class='subtitle button is-primary' id="wiki-link" target="_blank">View Page on Wikipedia</a>
 			</div>
 			<div v-html='content' id=content>
 				<!-- content will be rendered here -->

@@ -23,7 +23,7 @@ var vm = new Vue({
 						console.log(error);
 				});
 			} else {
-				fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=5&origin=*&format=json")
+				fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=5&origin=*&format=json&rnnamespace=0")
 					.then(function(resp) {
 						return resp.json();
 					}).then(function(resp) {
@@ -56,6 +56,21 @@ var vm = new Vue({
 		updateArticle: function(title) {
 			var url = "https://en.wikipedia.org/w/api.php?action=parse&page=" + title + "&format=json&origin=*";
 			this.makeArticleRequest(url);
+		},
+		randomArticle: function() {
+			fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=1&origin=*&format=json&rnnamespace=0")
+				.then(function(resp) {
+					return resp.json();
+				}).then(function(resp) {
+					data = resp.query.random;
+					vm.searchResults = data;
+					return data[0].title;
+				}).then(function(title) {
+					vm.updateArticle(title);
+				}).catch(function(error) {
+					console.log(error);
+			});
+
 		}
 	},
 	computed: {
