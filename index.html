@@ -2,44 +2,77 @@
 <html>
 <head>
 	<title>WikiViewer</title>
-	<link rel="stylesheet" type="text/css" href="./reset.css">
 	<link rel="stylesheet" type="text/css" href="./main.css">
-	<link rel="stylesheet" href="css/col.css" media="all">
-	<link rel="stylesheet" href="css/2cols.css" media="all">
-	<link rel="stylesheet" href="css/3cols.css" media="all">
-	<link rel="stylesheet" href="css/4cols.css" media="all">
-	<link rel="stylesheet" href="css/5cols.css" media="all">
-	<link rel="stylesheet" href="css/6cols.css" media="all">
-	<link rel="stylesheet" href="css/7cols.css" media="all">
-	<link rel="stylesheet" href="css/8cols.css" media="all">
-	<link rel="stylesheet" href="css/9cols.css" media="all">
-	<link rel="stylesheet" href="css/10cols.css" media="all">
-	<link rel="stylesheet" href="css/11cols.css" media="all">
-	<link rel="stylesheet" href="css/12cols.css" media="all">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.css">
+<!--	<link rel="stylesheet" href="css/4cols.css" media="all"> -->
 
 
 </head>
 <body>
-	<div id="app" class='section-group'>
-		<div id='search' class='col span_1_of_4'>
-			<h1>Search</h1>
-
-			<div id='form'>
-				<input type="text" v-on:keyup.enter="makeSearchReguest" v-model="searchString" id="search-terms" placeholder="Leave blank for a list of random articles...">
-				<button v-on:click="makeSearchReguest">Submit</button>
-			</div>		
-			<ul id='results' v-if="searchResults"  v-cloak>
-				<li v-for="result in searchResults">
-					<a href="#" v-on:click="updateArticle(result.title)">
-						<h3>{{result.title}}</h3>
-					</a>
-				</li>
-			</ul>
+	<div id='app'>
+		<section class="hero is-primary is-medium">
+		  <!-- Hero header: will stick at the top -->
+		  <div class="hero-head">
+		    <header class="nav">
+		      <div class="container">
+		        <div class="nav-left">
+		          <a class="nav-item">
+		          	<h2>wikipedia viewer</h2>
+		          </a>
+		        </div>
+		        
+		        <div class="nav-right is-hidden-mobile">
+		          <span class="nav-item">
+		          	<div class="field is-grouped">
+						<div class="control">
+				            <input class='input' type="text" v-on:keyup.enter="makeSearchReguest" v-model="searchString" id="search-terms" placeholder="Search Wikipedia">
+				        </div>
+				        <div class='control'>
+							<button class='button is-info' v-on:click="makeSearchReguest">S</button>
+						</div>
+				        <div class='control'>
+							<button class='button is-info'>r</button>
+						</div>
+					</div>
+		          </span>
+		        </div>
+		      </div>
+		    </header>
+		  </div>
+		</section>
+		<div class="is-hidden-tablet" id='mobile-search'>
+	      	<div class="field is-grouped">
+				<div class="control">
+		            <input class='input' type="text" v-on:keyup.enter="makeSearchReguest" v-model="searchString" id="search-terms" placeholder="Search Wikipedia">
+		        </div>
+		        <div class='control'>
+					<button class='button is-info' v-on:click="makeSearchReguest">S</button>
+				</div>
+		        <div class='control'>
+					<button class='button is-info'>r</button>
+				</div>
+			</div>
+        </div>
+		<div class='columns'>
+			<div class='column is-three-quarters'>
+			</div>
+			<div class='column is-one-quarter' id='results'>
+				<ul id='results' v-if="searchResults"  v-cloak>
+					<li v-for="result in searchResults" class='list-item'>
+						<a href="#" v-on:click="updateArticle(result.title)" class='list-item-link'>
+							{{ result.title }}
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<div id="article" v-if="articleLoaded" class='col span_3_of_4'>
-			<div id='headline'>
-				<h1 if='title'>{{ title }}</h2>
-				<a :href="wikiLink" id="wiki-link" target="_blank">View Page on Wikipedia</a>
+
+
+		
+		<div id="article" v-if="articleLoaded">
+			<div class='has-text-centered'>
+				<h1 class='title' v-if='title'>{{ title }}</h1>
+				<a :href="wikiLink" class='subtitle' id="wiki-link" target="_blank">View Page on Wikipedia</a>
 			</div>
 			<div v-html='content' id=content>
 				<!-- content will be rendered here -->

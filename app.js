@@ -2,7 +2,7 @@
 var vm = new Vue({
 	el: "#app",
 	data: {
-		searchString: "fart",
+		searchString: "",
 		searchResults: [],
 		title: "",
 		content: "",
@@ -44,9 +44,12 @@ var vm = new Vue({
 					vm.title = data.title;
 					vm.content = data.text["*"];
 					vm.wikiLink = "https://en.wikipedia.org/?curid=" + data.pageid;
-				}).then(function(resp) {
+				}).then(function() {
 					sanitizeURLs();
-				}).catch(function(error) {
+				}).then(function() {
+					scrollToArticle();
+				})
+				.catch(function(error) {
 					console.log(error);
 				})
 		},
@@ -100,4 +103,7 @@ function sanitizeURLs() {
 	})
 }
 
-vm.makeSearchReguest();
+function scrollToArticle() {
+	var el = document.getElementById("article");
+	el.scrollIntoView(true);
+}
