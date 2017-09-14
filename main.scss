@@ -74,3 +74,16 @@
 		display: none;
 	}
 }
+
+footer {
+	font-size: .75rem;
+	height: 40px;
+	line-height: 40px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: lightgray;
+	a {
+		color: blue;
+	}
+}
