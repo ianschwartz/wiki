@@ -14,11 +14,7 @@
 	width: 100%;
 	text-align: center;
 }
-@media (min-width: 768px) {
-	#article {
-		margin-top: -20%;	
-	}
-}
+
 
 #article {
 	#headline {
@@ -38,6 +34,7 @@
 		text-align: center;
 		.PopUpMediaTransform {
 			width: 100% !important;
+
 			img {
 				padding: 10px;
 				width: 50%;
@@ -49,9 +46,6 @@
 
 		}
 		.thumbimage {
-			border-color: blue;
-			border-width: 2px;
-			border-style: solid;
 			padding: 10px;
 			width: 50%;
 			height: auto;

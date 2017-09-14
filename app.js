@@ -10,7 +10,7 @@ var vm = new Vue({
 	},
 	methods: {
 		url: function(str) {
-			return 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + this.searchString + '&format=json&origin=*';
+			return 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + this.searchString + '&limit=5&format=json&origin=*';
 		},
 		makeSearchReguest: function() {
 			if (this.searchStringIsThere) {
@@ -23,7 +23,7 @@ var vm = new Vue({
 						console.log(error);
 				});
 			} else {
-				fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=8&origin=*&format=json")
+				fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=5&origin=*&format=json")
 					.then(function(resp) {
 						return resp.json();
 					}).then(function(resp) {

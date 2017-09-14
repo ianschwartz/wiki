@@ -12,9 +12,6 @@
   width: 100%;
   text-align: center; }
 
-@media (min-width: 768px) {
-  #article {
-    margin-top: -20%; } }
 #article #headline {
   text-align: center; }
   #article #headline a {
@@ -36,9 +33,6 @@
         margin: auto;
         display: block; }
     #article #content .thumbinner .thumbimage {
-      border-color: blue;
-      border-width: 2px;
-      border-style: solid;
       padding: 10px;
       width: 50%;
       height: auto;
