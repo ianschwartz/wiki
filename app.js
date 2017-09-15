@@ -5,7 +5,7 @@ var vm = new Vue({
 		searchString: "",
 		searchResults: [],
 		title: "",
-		content: "",
+		content: '',
 		wikiLink: ""
 	},
 	methods: {
@@ -46,10 +46,7 @@ var vm = new Vue({
 					vm.wikiLink = "https://en.wikipedia.org/?curid=" + data.pageid;
 				}).then(function() {
 					sanitizeURLs();
-				}).then(function() {
-					scrollToArticle();
-				})
-				.catch(function(error) {
+				}).catch(function(error) {
 					console.log(error);
 				})
 		},
@@ -58,7 +55,7 @@ var vm = new Vue({
 			this.makeArticleRequest(url);
 		},
 		randomArticle: function() {
-			fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=1&origin=*&format=json&rnnamespace=0")
+			fetch("https://en.wikipedia.org/w/api.php?action=query&list=random&rnlimit=5&origin=*&format=json&rnnamespace=0")
 				.then(function(resp) {
 					return resp.json();
 				}).then(function(resp) {
@@ -78,7 +75,7 @@ var vm = new Vue({
 			return this.searchString.length > 0;
 		},
 		articleLoaded: function() {
-			return this.title.length > 0;
+			return this.wikiLink.length > 0;
 		}
 	}
 })
@@ -116,9 +113,4 @@ function sanitizeURLs() {
 			a[key].target = "_blank";
 		}
 	})
-}
-
-function scrollToArticle() {
-	var el = document.getElementById("article");
-	el.scrollIntoView(true);
 }

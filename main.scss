@@ -1,10 +1,10 @@
-.list-item {
-	background: #00D1B2;
-	margin-bottom: 1px;
+
+#list-items {
 	padding: 10px;
 	.list-item-link {
 		color: white;
 		padding: 10px;
+		background: #00D1B2;
 	}
 }
 
@@ -23,27 +23,27 @@
 			font-size: 1rem;
 		}
 	}
-	#content {
+	.content {
 		padding: 10%;
 
 		table {
 			display: none;
 		}
-	.thumbinner {
-		width: 100% !important	;
-		text-align: center;
-		.PopUpMediaTransform {
-			width: 100% !important;
+		.thumbinner {
+			width: 100% !important	;
+			text-align: center;
+			.PopUpMediaTransform {
+				width: 100% !important;
 
-			img {
-				padding: 10px;
-				width: 50%;
-				max-width: 100%;
-				height: auto;
-				margin:auto;
-				display: block;
+				img {
+					padding: 10px;
+					max-width: 100%;
+					height: auto;
+					margin:auto;
+					display: block;
+				}
+
 			}
-
 		}
 		.thumbimage {
 			padding: 10px;
@@ -58,20 +58,23 @@
 			max-width: 60%;
 			margin: auto;
 		}
-	}
-	p {
-		margin: 10px;
-	}
-	ul {
-		padding: 20px;
-		list-style: none;
-		li {
-			padding: 2px;
+		p {
+			margin: 10px;
+		}
+		ul {
+			padding: 20px;
+			list-style: none;
+			li {
+				padding: 2px;
+			}
 		}
 	}
-}
 	.mw-editsection {
 		display: none;
+	}
+	#landing {
+		text-align: center;
+		display: block;
 	}
 }
 
@@ -90,4 +93,12 @@ footer {
 
 .subtitle {
 	margin-top: 10px !important;
+}
+
+.form {
+	padding: 20px;
+	width: auto;
+	display: inline-block;
+	margin-left: auto;
+	margin-right: auto;
 }

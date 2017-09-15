@@ -41,7 +41,7 @@
 		    </header>
 		  </div>
 		</section>
-		<div class="is-hidden-tablet" id='mobile-search	'>
+		<div class="is-hidden-tablet" class='form' id='mobile-search	'>
 	      	<div class="field">
 				<div class="control">
 		            <input class='input' type="text" v-on:keyup.enter="makeSearchReguest" v-model="searchString" id="search-terms" placeholder="Search Wikipedia">
@@ -52,33 +52,56 @@
 					<a class='button is-info' v-on:click="makeSearchReguest"><i class="fa fa-search" aria-hidden="true"></i></a>
 				</div>
 		        <div class='control'>
-					<a class='button is-info'>random article</a>
+					<button class='button is-info' v-on:click="randomArticle">random article</button>
 				</div>
 			</div>
         </div>
-		<div class='columns'>
-			<div class='column is-three-quarters'>
-			</div>
-			<div class='column is-one-quarter' id='results'>
-				<ul id='results' v-if="searchResults"  v-cloak>
-					<li v-for="result in searchResults" class='list-item'>
-						<a href="#" v-on:click="updateArticle(result.title)" class='list-item-link'>
-							{{ result.title }}
-						</a>
-					</li>
-				</ul>
+		<div class='level'>
+			<div class='level-item' id='list-items' v-for="result in searchResults">
+				<a href="#" v-on:click="updateArticle(result.title)" class='list-item-link'>
+					{{ result.title }}
+				</a>
 			</div>
 		</div>
 
 
 		
-		<div id="article" v-if="articleLoaded">
-			<div class='has-text-centered'>
-				<h1 class='title' v-if='title'>{{ title }}</h1>
-				<a :href="wikiLink" class='subtitle button is-primary' id="wiki-link" target="_blank">View Page on Wikipedia</a>
+		<div id="article">
+			<div v-if="articleLoaded">
+				<div class='has-text-centered'>
+					<h1 class='title' v-if='title'>{{ title }}</h1>
+					<a :href="wikiLink" class='subtitle button is-primary' id="wiki-link" target="_blank">View Page on Wikipedia</a>
+				</div>
+				<div v-html='content' class='content'>
+					<!-- content will be rendered here -->
+				</div>
 			</div>
-			<div v-html='content' id=content>
-				<!-- content will be rendered here -->
+			<div v-else>
+				<div class='has-text-centered'>
+					<h1 class='title'>wikiviewer</h1>
+					<h2 class='subtitle' c>a <a href="http://schwartz.world">schwartz.world</a> production</h2>
+					<p class='level has-text-centered' id='landing'>
+						<div>Search for a subject or try your luck with a random article!</div>
+						<div class='form is-hidden-mobile'>
+							<div class="field is-grouped">
+								<div class="control">
+						            <input class='input' type="text" v-on:keyup.enter="makeSearchReguest" v-model="searchString" id="search-terms" placeholder="Search Wikipedia">
+						        </div>
+						        <div class='control'>
+									<a class='button is-info' v-on:click="makeSearchReguest"><i class="fa fa-search" aria-hidden="true"></i></a>
+								</div>
+						        <div class='control'>
+									<button class='button is-info' v-on:click="randomArticle">random article</button>
+								</div>
+							</div>
+						</div>
+					</p>
+					<h3 class='subtitle'>
+						<a href="https://github.com/ianschwartz/wiki">
+					      See the code on GitHub <i class="fa fa-github"></i>
+					    </a>
+					</h3>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,10 +1,9 @@
-.list-item {
-  background: #00D1B2;
-  margin-bottom: 1px;
+#list-items {
   padding: 10px; }
-  .list-item .list-item-link {
+  #list-items .list-item-link {
     color: white;
-    padding: 10px; }
+    padding: 10px;
+    background: #00D1B2; }
 
 #mobile-search {
   padding: 10px;
@@ -16,42 +15,44 @@
   text-align: center; }
   #article #headline a {
     font-size: 1rem; }
-#article #content {
+#article .content {
   padding: 10%; }
-  #article #content table {
+  #article .content table {
     display: none; }
-  #article #content .thumbinner {
+  #article .content .thumbinner {
     width: 100% !important;
     text-align: center; }
-    #article #content .thumbinner .PopUpMediaTransform {
+    #article .content .thumbinner .PopUpMediaTransform {
       width: 100% !important; }
-      #article #content .thumbinner .PopUpMediaTransform img {
+      #article .content .thumbinner .PopUpMediaTransform img {
         padding: 10px;
-        width: 50%;
         max-width: 100%;
         height: auto;
         margin: auto;
         display: block; }
-    #article #content .thumbinner .thumbimage {
-      padding: 10px;
-      width: 50%;
-      height: auto;
-      margin: auto;
-      display: block; }
-    #article #content .thumbinner .thumbcaption {
-      font-size: .75rem;
-      text-align: center;
-      max-width: 60%;
-      margin: auto; }
-  #article #content p {
+  #article .content .thumbimage {
+    padding: 10px;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    display: block; }
+  #article .content .thumbcaption {
+    font-size: .75rem;
+    text-align: center;
+    max-width: 60%;
+    margin: auto; }
+  #article .content p {
     margin: 10px; }
-  #article #content ul {
+  #article .content ul {
     padding: 20px;
     list-style: none; }
-    #article #content ul li {
+    #article .content ul li {
       padding: 2px; }
 #article .mw-editsection {
   display: none; }
+#article #landing {
+  text-align: center;
+  display: block; }
 
 footer {
   font-size: .75rem;
@@ -66,5 +67,12 @@ footer {
 
 .subtitle {
   margin-top: 10px !important; }
+
+.form {
+  padding: 20px;
+  width: auto;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto; }
 
 /*# sourceMappingURL=main.css.map */
