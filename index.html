@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="./main.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.2/css/bulma.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 <!--	<link rel="stylesheet" href="css/4cols.css" media="all"> -->
 
 
@@ -56,53 +57,57 @@
 				</div>
 			</div>
         </div>
-		<div class='level'>
-			<div class='level-item' id='list-items' v-for="result in searchResults">
-				<a href="#" v-on:click="updateArticle(result.title)" class='list-item-link'>
-					{{ result.title }}
-				</a>
+        <transition name='fade'>
+			<div class='level' v-if="searchResults.length > 0">
+				<div class='level-item' id='list-items' v-for="result in searchResults">
+					<a href="#" v-on:click="updateArticle(result.title)" class='list-item-link'>
+						{{ result.title }}
+					</a>
+				</div>
 			</div>
-		</div>
+		</transition>
 
 
 		
 		<div id="article">
-			<div v-if="articleLoaded">
-				<div class='has-text-centered'>
-					<h1 class='title' v-if='title'>{{ title }}</h1>
-					<a :href="wikiLink" class='subtitle button is-primary' id="wiki-link" target="_blank">View Page on Wikipedia</a>
+	        <transition name='fade' mode="out-in">
+				<div v-if="articleLoaded">
+					<div class='has-text-centered'>
+						<h1 class='title' v-if='title'>{{ title }}</h1>
+						<a :href="wikiLink" class='subtitle button is-primary' id="wiki-link" target="_blank">View Page on Wikipedia</a>
+					</div>
+					<div v-html='content' class='content'>
+						<!-- content will be rendered here -->
+					</div>
 				</div>
-				<div v-html='content' class='content'>
-					<!-- content will be rendered here -->
-				</div>
-			</div>
-			<div v-else>
-				<div class='has-text-centered'>
-					<h1 class='title'>wikiviewer</h1>
-					<h2 class='subtitle' c>a <a href="http://schwartz.world">schwartz.world</a> production</h2>
-					<p class='level has-text-centered' id='landing'>
-						<div>Search for a subject or try your luck with a random article!</div>
-						<div class='form is-hidden-mobile'>
-							<div class="field is-grouped">
-								<div class="control">
-						            <input class='input' type="text" v-on:keyup.enter="makeSearchReguest" v-model="searchString" id="search-terms" placeholder="Search Wikipedia">
-						        </div>
-						        <div class='control'>
-									<a class='button is-info' v-on:click="makeSearchReguest"><i class="fa fa-search" aria-hidden="true"></i></a>
-								</div>
-						        <div class='control'>
-									<button class='button is-info' v-on:click="randomArticle">random article</button>
+				<div v-else>
+					<div class='has-text-centered'>
+						<h1 class='title'>wikiviewer</h1>
+						<h2 class='subtitle' c>a <a href="http://schwartz.world">schwartz.world</a> production</h2>
+						<p class='level has-text-centered' id='landing'>
+							<div>Search for a subject or try your luck with a random article!</div>
+							<div class='form is-hidden-mobile'>
+								<div class="field is-grouped">
+									<div class="control">
+							            <input class='input' type="text" v-on:keyup.enter="makeSearchReguest" v-model="searchString" id="search-terms" placeholder="Search Wikipedia">
+							        </div>
+							        <div class='control'>
+										<a class='button is-info' v-on:click="makeSearchReguest"><i class="fa fa-search" aria-hidden="true"></i></a>
+									</div>
+							        <div class='control'>
+										<button class='button is-info' v-on:click="randomArticle">random article</button>
+									</div>
 								</div>
 							</div>
-						</div>
-					</p>
-					<h3 class='subtitle'>
-						<a href="https://github.com/ianschwartz/wiki">
-					      See the code on GitHub <i class="fa fa-github"></i>
-					    </a>
-					</h3>
+						</p>
+						<h3 class='subtitle'>
+							<a href="https://github.com/ianschwartz/wiki">
+						      See the code on GitHub <i class="fa fa-github"></i>
+						    </a>
+						</h3>
+					</div>
 				</div>
-			</div>
+			</transition>
 		</div>
 	</div>
 
